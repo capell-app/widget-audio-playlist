@@ -35,21 +35,46 @@ Screenshot contract: `docs/screenshots.json`.
 
 ![Audio Playlist Widget extension card](docs/screenshots/extension-card.svg)
 
-![Audio Playlist fields in Layout Builder](docs/screenshots/audio-playlist-layout-builder-editor.png)
+![Illustrative audio playlist public output preview](docs/screenshots/audio-playlist-public-output.png)
 
-- Audio Playlist Widget extension card (marketplace, required).
-- Audio Playlist fields in Layout Builder (admin, optional).
-- Audio Playlist public output (frontend, optional).
+- Audio Playlist Widget extension card (marketplace, required evidence).
+- Audio Playlist fields in Layout Builder (admin, supplementary evidence).
+- Illustrative audio playlist public output preview (frontend, required evidence).
+- Audio Playlist fields in Layout Builder with admin sidebar menu open (admin, supplementary evidence).
 
 ## Technical Shape
 
-- Service providers: `Capell\WidgetAudioPlaylist\Providers\WidgetAudioPlaylistServiceProvider`.
-- Filament classes: `AudioPlaylistWidget`.
-- Data objects: `AudioChapterData`, `AudioPlaylistInputData`, `AudioPlaylistRenderData`, `AudioTrackData`.
-- Manifest contributions: `content-widget: Capell\WidgetAudioPlaylist\WidgetAudioPlaylistContribution`.
-- Health checks: `Capell\WidgetAudioPlaylist\Health\WidgetAudioPlaylistHealthCheck`.
-- Blade views: `packages/widget-audio-playlist/resources/views/widget.blade.php`.
-- Cache tags: `widget-audio-playlist`.
+### Service providers
+
+- `Capell\WidgetAudioPlaylist\Providers\WidgetAudioPlaylistServiceProvider`
+
+### Filament classes
+
+- `AudioPlaylistWidget`
+
+### Data objects
+
+- `AudioChapterData`
+- `AudioPlaylistInputData`
+- `AudioPlaylistRenderData`
+- `AudioTrackData`
+
+### Manifest contributions
+
+- `content-widget: Capell\WidgetAudioPlaylist\WidgetAudioPlaylistContribution`
+
+### Health checks
+
+- `Capell\WidgetAudioPlaylist\Health\WidgetAudioPlaylistHealthCheck`
+
+### Blade views
+
+- `packages/widget-audio-playlist/resources/views/widget.blade.php`
+
+### Cache tags
+
+- `widget-audio-playlist`
+
 
 ## Data Model
 
@@ -60,7 +85,7 @@ This package has no schema impact. It extends Capell through `content-widget` co
 - Required packages: `capell-app/admin`, `capell-app/core`, `capell-app/frontend`, `capell-app/layout-builder`.
 - Admin navigation: no admin page or resource contribution is declared.
 - Admin/editor extensions: `content-widget: WidgetAudioPlaylistContribution`.
-- Permissions: none declared in `capell.json`.
+- Permissions: no package permission declarations or Shield gates detected; host access rules still apply.
 - Public routes: none declared.
 - Database changes: no package migrations declared.
 - Config: no package config files.
@@ -85,8 +110,7 @@ This package has no schema impact. It extends Capell through `content-widget` co
 ## Quick Start
 
 1. Install the package: `composer require capell-app/widget-audio-playlist`.
-2. No package-specific setup command or migrations are declared.
-3. Open the package detail or install-intent surface and confirm the Audio Playlist Widget extension card is present.
+2. Open `/screenshot-fixtures/catalogue/widget-audio-playlist/audio-playlist-public-output` and confirm the public output renders without admin state.
 
 ## Next Steps
 
