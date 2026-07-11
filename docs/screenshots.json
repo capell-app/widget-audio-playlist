@@ -12,6 +12,19 @@
     "auditReason": "The package is release-ready with honest interim Marketplace artwork; deterministic Layout Builder and public-page fixtures still need capture.",
     "entries": [
         {
+            "id": "widget-audio-playlist-extension-card",
+            "title": "Audio Playlist Widget extension card.",
+            "package": "widget-audio-playlist",
+            "surface": "marketplace",
+            "targetType": "marketplace-asset",
+            "target": "extension-card",
+            "required": true,
+            "path": "docs/assets/marketplace/extension-card.svg",
+            "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/extension-card.svg",
+            "notes": "Committed Beta Marketplace card artwork for Audio Playlist Widget.",
+            "useCase": "A buyer reviews the Beta extension card before enabling Audio Playlist Widget."
+        },
+        {
             "id": "audio-playlist-layout-builder-editor",
             "title": "Audio Playlist fields in Layout Builder.",
             "package": "widget-audio-playlist",
