@@ -1,0 +1,33 @@
+{
+    "name": "capell-app/widget-audio-playlist",
+    "description": "Accessible uploaded audio playlist widget for Capell.",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.4",
+        "capell-app/admin": "^1.0 || 1.x-dev",
+        "capell-app/core": "^1.0 || 1.x-dev",
+        "capell-app/frontend": "^1.0 || 1.x-dev",
+        "capell-app/layout-builder": "^1.0 || 1.x-dev",
+        "spatie/laravel-package-tools": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Capell\\WidgetAudioPlaylist\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Capell\\WidgetAudioPlaylist\\Providers\\WidgetAudioPlaylistServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true
+}
