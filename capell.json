@@ -4,7 +4,7 @@
     "slug": "widget-audio-playlist",
     "displayName": "Audio Playlist Widget",
     "kind": "package",
-    "capellApiVersion": "^4.0",
+    "capellApiVersion": "^0.0",
     "version": "0.0.x-dev",
     "description": "Up to 20 uploaded tracks with native controls, artwork, transcripts, and chapters.",
     "product": {
@@ -36,8 +36,8 @@
     "contributes": [
         {
             "type": "content-widget",
-            "class": "Capell\\WidgetAudioPlaylist\\WidgetAudioPlaylistContribution",
-            "key": "capell-app.widget-audio-playlist"
+            "key": "capell-app.audio-playlist",
+            "class": "Capell\\WidgetAudioPlaylist\\WidgetAudioPlaylistContribution"
         }
     ],
     "database": {
