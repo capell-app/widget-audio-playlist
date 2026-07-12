@@ -36,8 +36,8 @@
     "contributes": [
         {
             "type": "content-widget",
-            "class": "Capell\\WidgetAudioPlaylist\\WidgetAudioPlaylistContribution",
-            "key": "capell-app.widget-audio-playlist"
+            "key": "capell-app.audio-playlist",
+            "class": "Capell\\WidgetAudioPlaylist\\WidgetAudioPlaylistContribution"
         }
     ],
     "database": {
