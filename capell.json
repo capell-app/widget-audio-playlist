@@ -1,0 +1,147 @@
+{
+    "manifest-version": 3,
+    "name": "capell-app/widget-audio-playlist",
+    "slug": "widget-audio-playlist",
+    "displayName": "Audio Playlist Widget",
+    "kind": "package",
+    "capellApiVersion": "^0.0.1",
+    "version": "0.0.x-dev",
+    "description": "Up to 20 uploaded tracks with native controls, artwork, transcripts, and chapters.",
+    "product": {
+        "group": "Capell Foundation",
+        "tier": "free",
+        "bundle": "foundation"
+    },
+    "namespace": "Capell\\WidgetAudioPlaylist",
+    "surfaces": ["admin", "frontend"],
+    "dependencies": {
+        "requires": [
+            "capell-app/admin",
+            "capell-app/core",
+            "capell-app/frontend",
+            "capell-app/layout-builder"
+        ],
+        "supports": [],
+        "conflicts": []
+    },
+    "providers": {
+        "metadata": [],
+        "install": [],
+        "runtime": [
+            "Capell\\WidgetAudioPlaylist\\Providers\\WidgetAudioPlaylistServiceProvider"
+        ],
+        "admin": [],
+        "frontend": []
+    },
+    "contributes": [
+        {
+            "type": "content-widget",
+            "key": "capell-app.audio-playlist",
+            "class": "Capell\\WidgetAudioPlaylist\\WidgetAudioPlaylistContribution"
+        }
+    ],
+    "database": {
+        "migrations": false,
+        "settings": false,
+        "requiredTables": []
+    },
+    "commands": {
+        "install": null,
+        "setup": null,
+        "setupParams": [],
+        "demo": null,
+        "doctor": null
+    },
+    "settings": [],
+    "permissions": [],
+    "capabilities": ["frontend.public-static"],
+    "security": {
+        "riskTier": "low",
+        "publicSurface": {
+            "routeNames": [],
+            "auth": "none",
+            "csrfExemptRoutes": [],
+            "signedRoutes": [],
+            "tokenizedRoutes": [],
+            "webhookRoutes": [],
+            "throttledRoutes": []
+        },
+        "sensitiveData": {
+            "encryptedFields": [],
+            "hashedTokenFields": [],
+            "redactedOutputClasses": [],
+            "plaintextJustifications": []
+        },
+        "publicOutput": {
+            "cacheSafe": true,
+            "forbidAuthoringSurface": true,
+            "forbidSecrets": true,
+            "forbidPublicBladeQueries": true
+        },
+        "externalHttpClients": {
+            "requiresTimeouts": false,
+            "requiresSecretRedaction": false,
+            "clients": []
+        },
+        "adminSurface": { "authorization": "panel-auth", "permissions": [] }
+    },
+    "performance": {
+        "frontendRenderBudgetMs": 12,
+        "adminQueryBudget": 0,
+        "cacheTags": ["widget-audio-playlist"],
+        "cacheSafety": {
+            "cacheable": true,
+            "variesBy": ["site", "locale", "theme"],
+            "sensitiveOutput": false,
+            "invalidationSources": [
+                {
+                    "model": "Capell\\Core\\Models\\Page",
+                    "events": [
+                        "created",
+                        "updated",
+                        "deleted",
+                        "restored",
+                        "forceDeleted"
+                    ]
+                },
+                {
+                    "model": "Capell\\Core\\Models\\Media",
+                    "events": [
+                        "created",
+                        "updated",
+                        "deleted",
+                        "restored",
+                        "forceDeleted"
+                    ]
+                }
+            ],
+            "queueInvalidation": false
+        }
+    },
+    "healthChecks": [
+        {
+            "key": "widget-audio-playlist.package-health",
+            "label": "Audio Playlist widget package health",
+            "class": "Capell\\WidgetAudioPlaylist\\Health\\WidgetAudioPlaylistHealthCheck",
+            "severity": "critical",
+            "surface": "frontend"
+        }
+    ],
+    "commercial": {
+        "proposedLicense": "free",
+        "requestedCertification": "first-party",
+        "supportPolicy": "capell-first-party",
+        "privateDocsRequested": false
+    },
+    "marketplace": {
+        "summary": "Accessible native audio playlists with transcripts and chapters.",
+        "screenshots": [
+            {
+                "path": "docs/assets/marketplace/extension-card.jpg",
+                "alt": "Audio Playlist widget preview",
+                "caption": "Audio Playlist widget"
+            }
+        ],
+        "categories": ["foundation", "frontend", "media"]
+    }
+}
