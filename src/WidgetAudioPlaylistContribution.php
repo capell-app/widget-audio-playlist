@@ -10,6 +10,6 @@ final class WidgetAudioPlaylistContribution implements RegistersExtensionContent
 {
     public static function compatibleCapellApiVersion(): string
     {
-        return '^1.0';
+        return '^0.0';
     }
 }
