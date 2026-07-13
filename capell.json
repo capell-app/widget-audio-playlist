@@ -4,7 +4,7 @@
     "slug": "widget-audio-playlist",
     "displayName": "Audio Playlist Widget",
     "kind": "package",
-    "capellApiVersion": "^1.0",
+    "capellApiVersion": "^4.0",
     "version": "1.x-dev",
     "description": "Up to 20 uploaded tracks with native controls, artwork, transcripts, and chapters.",
     "product": {
