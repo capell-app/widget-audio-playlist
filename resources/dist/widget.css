@@ -1,1 +1,30 @@
-.capell-audio-playlist{color:var(--theme-text,#172033)}.capell-audio-playlist>ol{display:grid;gap:1rem;padding:0;list-style:none}.capell-audio-playlist>ol>li{display:grid;grid-template-columns:minmax(5rem,8rem) 1fr;gap:1rem;padding:1rem;border:1px solid var(--theme-border,#cbd5e1);border-radius:var(--theme-radius,.75rem);background:var(--theme-surface,#fff)}.capell-audio-playlist img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}.capell-audio-playlist audio{width:100%}.capell-audio-playlist button{min-height:44px}
+.capell-audio-playlist {
+    color: var(--theme-text, #172033);
+}
+.capell-audio-playlist > ol {
+    display: grid;
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+}
+.capell-audio-playlist > ol > li {
+    display: grid;
+    grid-template-columns: minmax(5rem, 8rem) 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--theme-border, #cbd5e1);
+    border-radius: var(--theme-radius, 0.75rem);
+    background: var(--theme-surface, #fff);
+}
+.capell-audio-playlist img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+.capell-audio-playlist audio {
+    width: 100%;
+}
+.capell-audio-playlist button {
+    min-height: 44px;
+}

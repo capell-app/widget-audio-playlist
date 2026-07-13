@@ -1,2 +1,56 @@
 @php /** @var \Capell\WidgetAudioPlaylist\Data\AudioPlaylistRenderData $renderData */ @endphp
-<section class="capell-audio-playlist" data-capell-audio-playlist><h2>{{ $renderData->title }}</h2><ol>@foreach($renderData->tracks as $track)<li>@if($track->artwork)<img src="{{ asset('storage/'.ltrim($track->artwork,'/')) }}" alt="" loading="lazy">@endif<div><h3>{{ $track->title }}</h3><p>{{ $track->artist }}</p><audio controls preload="none" src="{{ asset('storage/'.ltrim($track->audio,'/')) }}"></audio>@if($track->transcript)<details><summary>{{ __('capell-widget-audio-playlist::widget.transcript') }}</summary><p>{{ $track->transcript }}</p></details>@endif @if($track->chapters->count())<details><summary>{{ __('capell-widget-audio-playlist::widget.chapters') }}</summary><ol>@foreach($track->chapters as $chapter)<li><button type="button" data-audio-seek="{{ $chapter->startSeconds }}">{{ $chapter->label }} ({{ gmdate('i:s',$chapter->startSeconds) }})</button></li>@endforeach</ol></details>@endif</div></li>@endforeach</ol></section>
+<section
+    class="capell-audio-playlist"
+    data-capell-audio-playlist
+>
+    <h2>{{ $renderData->title }}</h2>
+    <ol>
+        @foreach ($renderData->tracks as $track)
+            <li>
+                @if ($track->artwork)
+                    <img
+                        src="{{ asset('storage/'.ltrim($track->artwork,'/')) }}"
+                        alt=""
+                        loading="lazy"
+                    />
+                @endif
+                <div>
+                    <h3>{{ $track->title }}</h3>
+                    <p>{{ $track->artist }}</p>
+                    <audio
+                        controls
+                        preload="none"
+                        src="{{ asset('storage/'.ltrim($track->audio,'/')) }}"
+                    ></audio>
+                    @if ($track->transcript)
+                        <details>
+                            <summary>
+                                {{ __('capell-widget-audio-playlist::widget.transcript') }}
+                            </summary>
+                            <p>{{ $track->transcript }}</p>
+                        </details>
+                    @endif
+                    @if ($track->chapters->count())
+                        <details>
+                            <summary>
+                                {{ __('capell-widget-audio-playlist::widget.chapters') }}
+                            </summary>
+                            <ol>
+                                @foreach ($track->chapters as $chapter)
+                                    <li>
+                                        <button
+                                            type="button"
+                                            data-audio-seek="{{ $chapter->startSeconds }}"
+                                        >
+                                            {{ $chapter->label }} ({{ gmdate('i:s',$chapter->startSeconds) }})
+                                        </button>
+                                    </li>
+                                @endforeach
+                            </ol>
+                        </details>
+                    @endif
+                </div>
+            </li>
+        @endforeach
+    </ol>
+</section>
