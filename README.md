@@ -6,9 +6,11 @@
 
 Audio Playlist Widget is an **Available**, **No schema impact** Capell package in the **Capell Foundation** product group. It ships as `capell-app/widget-audio-playlist` and extends these surfaces: admin, frontend.
 
-Up to 20 uploaded tracks with native controls, artwork, transcripts, and chapters.
+Audio Playlist adds a Layout Builder widget for local audio tracks with artwork, native controls, transcripts, and chapter markers. Its configuration accepts a bounded playlist and rejects remote audio sources.
 
-After install, admins get package-owned management surfaces and public users may see package-owned frontend output or routes.
+Editors configure the playlist in Layout Builder, and visitors receive a public player with track context and supporting transcript or chapter content when supplied.
+
+Evidence: [`src/Filament/AudioPlaylistWidget.php`](src/Filament/AudioPlaylistWidget.php), [`resources/views/widget.blade.php`](resources/views/widget.blade.php), [`tests/Feature/WidgetAudioPlaylistTest.php`](tests/Feature/WidgetAudioPlaylistTest.php), [`capell.json`](capell.json).
 
 Status details:
 
@@ -21,9 +23,11 @@ Status details:
 
 ## Why It Matters
 
-**For developers:** The package gives developers package-owned service providers, Data objects, Filament classes, and Blade views instead of pushing this behaviour into core or application code.
+**For developers:** The package registers a typed widget extension and validates media and nested track data before the public Blade render.
 
-**For teams:** Accessible native audio playlists with transcripts and chapters.
+**For teams:** Teams can publish a structured listening experience with useful context instead of assembling separate players and transcript blocks.
+
+Evidence: [`src/Providers/WidgetAudioPlaylistServiceProvider.php`](src/Providers/WidgetAudioPlaylistServiceProvider.php), [`src/Filament/AudioPlaylistWidget.php`](src/Filament/AudioPlaylistWidget.php), [`tests/Feature/WidgetAudioPlaylistTest.php`](tests/Feature/WidgetAudioPlaylistTest.php), [`resources/views/widget.blade.php`](resources/views/widget.blade.php).
 
 ## Screens And Workflow
 
@@ -47,25 +51,27 @@ Screenshot contract: `docs/screenshots.json`.
 
 ## Data Model
 
-This package has no schema impact. It does not declare package-owned migrations or required tables.
-
-Docs gap: document extension points here if the package delegates persistence to a host package.
+This package has no schema impact. It extends Capell through `content-widget` contributions instead of declaring package-owned tables.
 
 ## Install Impact
 
-- Admin navigation: adds package-owned Filament classes when registered.
+- Required packages: `capell-app/admin`, `capell-app/core`, `capell-app/frontend`, `capell-app/layout-builder`.
+- Admin navigation: no admin page or resource contribution is declared.
+- Admin/editor extensions: `content-widget: WidgetAudioPlaylistContribution`.
 - Permissions: none declared in `capell.json`.
-- Public routes: none detected in package route files.
+- Public routes: none declared.
 - Database changes: no package migrations declared.
+- Config: no package config files.
 - Settings: no package settings declared.
-- Queues or schedules: none detected in standard package paths.
+- Queues or schedules: none declared.
 - Cache tags: `widget-audio-playlist`.
 - Commands: none declared.
 
 ## Common Pitfalls
 
+- Keep required Capell packages on compatible v4 releases: `capell-app/admin`, `capell-app/core`, `capell-app/frontend`, `capell-app/layout-builder`.
 - Keep public Blade and cached HTML free of authoring markers, model IDs, permissions, signed editor URLs, and lazy database queries.
-- Keep `composer.json`, `composer.local.json`, `capell.json`, docs, screenshots, and tests aligned when the package surface changes.
+- Custom write integrations must preserve invalidation for `widget-audio-playlist` cache tags.
 
 ## Troubleshooting
 
@@ -77,13 +83,14 @@ Docs gap: document extension points here if the package delegates persistence to
 ## Quick Start
 
 1. Install the package: `composer require capell-app/widget-audio-playlist`.
-2. Run the required setup: no package migrations are declared; clear cached config and routes if the host app uses caches.
-3. Open the related Capell admin surface and verify Audio Playlist Widget appears.
+2. No package-specific setup command or migrations are declared.
+3. Open the package detail or install-intent surface and confirm the Audio Playlist Widget extension card is present.
 
 ## Next Steps
 
 - [Package docs](docs/README.md)
 - [Overview](docs/overview.md)
+- [Troubleshooting](#troubleshooting)
 - [Screenshot contract](docs/screenshots.json)
 - [Marketplace assets](docs/assets/marketplace/)
 - [Capell content language plan](../../docs/CONTENT_LANGUAGE_PLAN.md)

@@ -1,0 +1,35 @@
+{
+    "whatThisPluginAdds": {
+        "text": "Audio Playlist adds a Layout Builder widget for local audio tracks with artwork, native controls, transcripts, and chapter markers. Its configuration accepts a bounded playlist and rejects remote audio sources.",
+        "evidence": [
+            "src/Filament/AudioPlaylistWidget.php",
+            "resources/views/widget.blade.php",
+            "tests/Feature/WidgetAudioPlaylistTest.php"
+        ]
+    },
+    "surfaceOutcome": {
+        "text": "Editors configure the playlist in Layout Builder, and visitors receive a public player with track context and supporting transcript or chapter content when supplied.",
+        "evidence": [
+            "capell.json",
+            "src/Filament/AudioPlaylistWidget.php",
+            "resources/views/widget.blade.php"
+        ]
+    },
+    "whyItMatters": {
+        "developers": {
+            "text": "The package registers a typed widget extension and validates media and nested track data before the public Blade render.",
+            "evidence": [
+                "src/Providers/WidgetAudioPlaylistServiceProvider.php",
+                "src/Filament/AudioPlaylistWidget.php",
+                "tests/Feature/WidgetAudioPlaylistTest.php"
+            ]
+        },
+        "teams": {
+            "text": "Teams can publish a structured listening experience with useful context instead of assembling separate players and transcript blocks.",
+            "evidence": [
+                "resources/views/widget.blade.php",
+                "tests/Feature/WidgetAudioPlaylistTest.php"
+            ]
+        }
+    }
+}
