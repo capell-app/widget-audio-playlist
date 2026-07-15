@@ -90,7 +90,7 @@
         "adminQueryBudget": 0,
         "cacheTags": ["widget-audio-playlist"],
         "cacheSafety": {
-            "cacheable": true,
+            "cacheable": false,
             "variesBy": ["site", "locale", "theme"],
             "sensitiveOutput": false,
             "invalidationSources": [
