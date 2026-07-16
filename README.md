@@ -35,6 +35,8 @@ Screenshot contract: `docs/screenshots.json`.
 
 ![Audio Playlist Widget extension card](docs/screenshots/extension-card.svg)
 
+![Audio Playlist fields in Layout Builder](docs/screenshots/audio-playlist-layout-builder-editor.png)
+
 - Audio Playlist Widget extension card (marketplace, required).
 - Audio Playlist fields in Layout Builder (admin, optional).
 - Audio Playlist public output (frontend, optional).

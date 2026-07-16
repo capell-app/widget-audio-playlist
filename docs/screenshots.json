@@ -34,6 +34,11 @@
             "required": false,
             "notes": "Capture the configured Layout Builder fields and a public playlist with at least two tracks, artwork, and a visible transcript link. Capture the editor state before the page is published.",
             "useCase": "An editor can see the fields used to configure the Audio Playlist widget.",
+            "url": "/screenshot-fixtures/widgets/audio-playlist/editor",
+            "waitFor": "[data-widget-screenshot-fixture=\"editor\"]",
+            "colorSchemes": [
+                "light"
+            ],
             "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/audio-playlist-layout-builder-editor.png"
         },
         {
@@ -46,6 +51,11 @@
             "required": false,
             "notes": "Capture the configured Layout Builder fields and a public playlist with at least two tracks, artwork, and a visible transcript link. Verify the rendered HTML contains no authoring controls, field paths, model identifiers, or signed admin URLs.",
             "useCase": "An editor publishes an accessible multi-track audio collection without an external player.",
+            "url": "/screenshot-fixtures/widgets/audio-playlist/public",
+            "waitFor": "[data-widget-screenshot-fixture=\"public\"]",
+            "colorSchemes": [
+                "light"
+            ],
             "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/audio-playlist-public-output.png"
         }
     ]
