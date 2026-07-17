@@ -83,7 +83,10 @@
             "requiresSecretRedaction": false,
             "clients": []
         },
-        "adminSurface": { "authorization": "panel-auth", "permissions": [] }
+        "adminSurface": {
+            "authorization": "panel-auth",
+            "permissions": []
+        }
     },
     "performance": {
         "frontendRenderBudgetMs": 12,

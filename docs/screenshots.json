@@ -36,9 +36,7 @@
             "useCase": "An editor can see the fields used to configure the Audio Playlist widget.",
             "url": "/screenshot-fixtures/widgets/audio-playlist/editor",
             "waitFor": "[data-widget-screenshot-fixture=\"editor\"]",
-            "colorSchemes": [
-                "light"
-            ],
+            "colorSchemes": ["light"],
             "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/audio-playlist-layout-builder-editor.png"
         },
         {
@@ -53,9 +51,7 @@
             "useCase": "An editor publishes an accessible multi-track audio collection without an external player.",
             "url": "/screenshot-fixtures/widgets/audio-playlist/public",
             "waitFor": "[data-widget-screenshot-fixture=\"public\"]",
-            "colorSchemes": [
-                "light"
-            ],
+            "colorSchemes": ["light"],
             "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/audio-playlist-public-output.png"
         }
     ]
