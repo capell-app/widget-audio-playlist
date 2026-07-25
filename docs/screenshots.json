@@ -13,6 +13,7 @@
     "entries": [
         {
             "id": "widget-audio-playlist-extension-card",
+            "colorSchemes": ["light"],
             "title": "Audio Playlist Widget extension card.",
             "package": "widget-audio-playlist",
             "surface": "marketplace",
@@ -41,18 +42,18 @@
         },
         {
             "id": "audio-playlist-public-output",
-            "title": "Audio Playlist public output.",
+            "title": "Illustrative audio playlist public output preview.",
             "package": "widget-audio-playlist",
             "surface": "frontend",
-            "targetType": "artifact",
-            "target": "Seeded public page fixture",
-            "required": false,
-            "notes": "Capture the configured Layout Builder fields and a public playlist with at least two tracks, artwork, and a visible transcript link. Verify the rendered HTML contains no authoring controls, field paths, model identifiers, or signed admin URLs.",
+            "targetType": "frontend-url",
+            "target": "/screenshot-fixtures/catalogue/widget-audio-playlist/audio-playlist-public-output",
+            "required": true,
+            "notes": "Illustrative deterministic catalogue fixture, not a live package UI capture. Capture the configured Layout Builder fields and a public playlist with at least two tracks, artwork, and a visible transcript link. Verify the rendered HTML contains no authoring controls, field paths, model identifiers, or signed admin URLs.",
             "useCase": "An editor publishes an accessible multi-track audio collection without an external player.",
-            "url": "/screenshot-fixtures/widgets/audio-playlist/public",
-            "waitFor": "[data-widget-screenshot-fixture=\"public\"]",
-            "colorSchemes": ["light"],
-            "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/audio-playlist-public-output.png"
+            "url": "/screenshot-fixtures/catalogue/widget-audio-playlist/audio-playlist-public-output",
+            "colorSchemes": ["light", "dark"],
+            "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/audio-playlist-public-output.png",
+            "fixtureKind": "illustrative-catalogue"
         }
     ]
 }
