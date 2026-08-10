@@ -54,6 +54,27 @@
             "colorSchemes": ["light", "dark"],
             "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/audio-playlist-public-output.png",
             "fixtureKind": "illustrative-catalogue"
+        },
+        {
+            "id": "widget-audio-playlist-admin-sidebar-menu-open",
+            "title": "Audio Playlist fields in Layout Builder with admin sidebar menu open.",
+            "package": "widget-audio-playlist",
+            "surface": "admin",
+            "targetType": "admin-surface",
+            "target": "Layout Builder page editor",
+            "required": false,
+            "notes": "Capture the configured Layout Builder fields and a public playlist with at least two tracks, artwork, and a visible transcript link. Capture the editor state before the page is published. Capture this same admin surface with the fully collapsible sidebar opened.",
+            "useCase": "An editor can see the fields used to configure the Audio Playlist widget.",
+            "url": "/screenshot-fixtures/widgets/audio-playlist/editor",
+            "waitFor": "[data-widget-screenshot-fixture=\"editor\"]",
+            "colorSchemes": ["light"],
+            "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/widget-audio-playlist-admin-sidebar-menu-open.png",
+            "beforeWait": [
+                {
+                    "type": "click",
+                    "selector": ".fi-topbar-open-collapse-sidebar-btn"
+                }
+            ]
         }
     ]
 }
