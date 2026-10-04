@@ -1,5 +1,5 @@
 document
-    .querySelectorAll('[data-capell-audio-playlist]')
+    .querySelectorAll('[data-capell-widget-audio-playlist]')
     .forEach((playlist) => {
         const players = Array.from(playlist.querySelectorAll('audio'))
         players.forEach((player) =>

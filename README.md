@@ -10,8 +10,6 @@ Audio Playlist adds a Layout Builder widget for local audio tracks with artwork,
 
 Editors configure the playlist in Layout Builder, and visitors receive a public player with track context and supporting transcript or chapter content when supplied.
 
-Evidence: [`src/Filament/AudioPlaylistWidget.php`](src/Filament/AudioPlaylistWidget.php), [`resources/views/widget.blade.php`](resources/views/widget.blade.php), [`tests/Feature/WidgetAudioPlaylistTest.php`](tests/Feature/WidgetAudioPlaylistTest.php), [`capell.json`](capell.json).
-
 Status details:
 
 - Status: Available
@@ -27,19 +25,17 @@ Status details:
 
 **For teams:** Teams can publish a structured listening experience with useful context instead of assembling separate players and transcript blocks.
 
-Evidence: [`src/Providers/WidgetAudioPlaylistServiceProvider.php`](src/Providers/WidgetAudioPlaylistServiceProvider.php), [`src/Filament/AudioPlaylistWidget.php`](src/Filament/AudioPlaylistWidget.php), [`tests/Feature/WidgetAudioPlaylistTest.php`](tests/Feature/WidgetAudioPlaylistTest.php), [`resources/views/widget.blade.php`](resources/views/widget.blade.php).
-
 ## Screens And Workflow
 
 Screenshot contract: `docs/screenshots.json`.
 
 ![Audio Playlist Widget extension card](docs/screenshots/extension-card.svg)
 
-![Illustrative audio playlist public output preview](docs/screenshots/audio-playlist-public-output.png)
+![Audio Playlist public output](docs/screenshots/audio-playlist-public-output.png)
 
 - Audio Playlist Widget extension card (marketplace, required evidence).
 - Audio Playlist fields in Layout Builder (admin, supplementary evidence).
-- Illustrative audio playlist public output preview (frontend, required evidence).
+- Audio Playlist public output (frontend, required evidence).
 - Audio Playlist fields in Layout Builder with admin sidebar menu open (admin, supplementary evidence).
 
 ## Technical Shape
@@ -110,7 +106,7 @@ This package has no schema impact. It extends Capell through `content-widget` co
 ## Quick Start
 
 1. Install the package: `composer require capell-app/widget-audio-playlist`.
-2. Open `/screenshot-fixtures/catalogue/widget-audio-playlist/audio-playlist-public-output` and confirm the public output renders without admin state.
+2. Open the package detail or install-intent surface and confirm the Audio Playlist Widget extension card is present.
 
 ## Next Steps
 
@@ -123,6 +119,5 @@ This package has no schema impact. It extends Capell through `content-widget` co
 - [Capell documentation design system](../../docs/DESIGN_SYSTEM.md)
 - [Capell and package ERD notes](../../docs/erd/capell-and-package-erds.md)
 - Related packages: [Layout Builder](../layout-builder/README.md).
-- Focused tests: `vendor/bin/pest packages/widget-audio-playlist/tests --configuration=phpunit.xml`.
 
 <!-- prettier-ignore-end -->

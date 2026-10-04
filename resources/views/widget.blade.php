@@ -1,7 +1,7 @@
 @php /** @var \Capell\WidgetAudioPlaylist\Data\AudioPlaylistRenderData $renderData */ @endphp
 <section
     class="capell-audio-playlist"
-    data-capell-audio-playlist
+    data-capell-widget-audio-playlist
 >
     <h2>{{ $renderData->title }}</h2>
     <ol>
