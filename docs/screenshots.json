@@ -17,11 +17,11 @@
             "title": "Audio Playlist Widget extension card.",
             "package": "widget-audio-playlist",
             "surface": "marketplace",
-            "targetType": "marketplace-asset",
+            "targetType": "artifact",
             "target": "extension-card",
-            "required": true,
+            "required": false,
             "path": "docs/assets/marketplace/extension-card.svg",
-            "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/extension-card.svg",
+            "fixtureKind": "illustrative-catalogue",
             "notes": "Committed Beta Marketplace card artwork for Audio Playlist Widget.",
             "useCase": "A buyer reviews the Beta extension card before enabling Audio Playlist Widget."
         },
@@ -52,7 +52,7 @@
                     "block": "start"
                 }
             ],
-            "colorSchemes": ["light"],
+            "colorSchemes": ["light", "dark"],
             "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/audio-playlist-layout-builder-editor.png",
             "user": "admin",
             "requiredViewport": {
