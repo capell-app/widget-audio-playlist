@@ -38,6 +38,11 @@
             "type": "content-widget",
             "key": "capell-app.audio-playlist",
             "class": "Capell\\WidgetAudioPlaylist\\WidgetAudioPlaylistContribution"
+        },
+        {
+            "type": "asset",
+            "key": "resource-group:capell-app.widget-audio-playlist",
+            "class": "Capell\\WidgetAudioPlaylist\\WidgetAudioPlaylistContribution"
         }
     ],
     "database": {

@@ -12,6 +12,7 @@ use Capell\LayoutBuilder\Providers\AbstractFoundationWidgetServiceProvider;
 use Capell\WidgetAudioPlaylist\Data\AudioPlaylistInputData;
 use Capell\WidgetAudioPlaylist\Data\AudioPlaylistRenderData;
 use Capell\WidgetAudioPlaylist\Filament\AudioPlaylistWidget;
+use Override;
 
 final class WidgetAudioPlaylistServiceProvider extends AbstractFoundationWidgetServiceProvider
 {
@@ -19,11 +20,22 @@ final class WidgetAudioPlaylistServiceProvider extends AbstractFoundationWidgetS
 
     public static string $packageName = 'capell-app/widget-audio-playlist';
 
+    #[Override]
+    public function packageBooted(): void {}
+
+    #[Override]
     protected static function resourceGroup(): string
     {
         return 'capell-app.widget-audio-playlist';
     }
 
+    #[Override]
+    protected function bootInstalledRuntime(): void
+    {
+        $this->registerWidget();
+    }
+
+    #[Override]
     protected function definition(): WidgetExtensionDefinitionData
     {
         return new WidgetExtensionDefinitionData(key: 'capell-app.audio-playlist', packageName: self::$packageName, stateVersion: 1, filamentWidget: AudioPlaylistWidget::class, inputData: AudioPlaylistInputData::class, renderData: AudioPlaylistRenderData::class, fallbackView: 'capell-widget-audio-playlist::widget', components: ['blade' => 'capell::widgets.capell-app.audio-playlist'], resourceGroups: [self::resourceGroup()], defaultResourceLoadingStrategy: PresentationLoadingStrategy::Visible, capabilities: new WidgetExtensionCapabilitiesData(requiresInstanceIdentity: true, presentationCapabilities: [WidgetPresentationCapability::Width, WidgetPresentationCapability::Alignment, WidgetPresentationCapability::LoadingStrategy]));

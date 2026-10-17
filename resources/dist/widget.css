@@ -1,5 +1,5 @@
 .capell-audio-playlist {
-    color: var(--theme-text, #172033);
+    color: inherit;
 }
 .capell-audio-playlist > ol {
     display: grid;
@@ -8,6 +8,7 @@
     list-style: none;
 }
 .capell-audio-playlist > ol > li {
+    color: var(--theme-foreground, currentColor);
     display: grid;
     grid-template-columns: minmax(5rem, 8rem) 1fr;
     gap: 1rem;
@@ -27,4 +28,11 @@
 }
 .capell-audio-playlist button {
     min-height: 44px;
+}
+
+/* Brand surfaces stay light; Foundation typography switches at the dark root. */
+.dark .capell-audio-playlist > ol > li {
+    color: var(--foundation-body-fg, var(--theme-foreground, currentColor));
+    background: var(--foundation-card-bg, var(--theme-surface, #fff));
+    border-color: var(--foundation-border, var(--theme-border, #cbd5e1));
 }
