@@ -31,5 +31,21 @@
                 "tests/Feature/WidgetAudioPlaylistTest.php"
             ]
         }
-    }
+    },
+    "troubleshooting": [
+        {
+            "symptom": "The playlist is refused",
+            "cause": "It has no tracks or more than 20",
+            "check": "Count the tracks in the widget",
+            "fix": "Keep between 1 and 20 tracks",
+            "evidence": ["src/Data/AudioPlaylistInputData.php"]
+        },
+        {
+            "symptom": "A track is refused",
+            "cause": "The audio or artwork path is not a local media path, or a title or artist is over 120 characters",
+            "check": "Check the track's audio and artwork fields",
+            "fix": "Pick files from the media library rather than pasting a web address, and shorten long titles",
+            "evidence": ["src/Data/AudioTrackData.php"]
+        }
+    ]
 }

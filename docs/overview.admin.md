@@ -20,3 +20,5 @@ In Layout Builder, as an Audio Playlist widget with fields for up to 20 ordered 
 ## Screenshot status
 
 Capture the configured Layout Builder fields and a public playlist with at least two tracks, artwork, and an expanded transcript disclosure. The committed Marketplace card is interim beta artwork until these two fixture captures are recorded.
+
+Widgets added through deferred content or inline reveal initialise when the content arrives. Repeated content-ready events do not duplicate listeners or countdown timers.

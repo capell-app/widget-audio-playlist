@@ -103,11 +103,17 @@ This package has no schema impact. It extends Capell through `asset` contributio
 | --- | --- | --- | --- |
 | Package surface is missing after install | Provider or manifest is not loaded | Confirm `capell.json`, package `composer.json`, and provider registration | Reinstall the package, refresh Composer autoload, and clear host caches |
 | Public output leaks unexpected state | Render data, cache variation, or authoring boundary has regressed | Check public Blade, cache tags, and public-output safety tests | Move data loading out of Blade and rerun the package public-output tests |
+| The playlist is refused | It has no tracks or more than 20 | Count the tracks in the widget | Keep between 1 and 20 tracks |
+| A track is refused | The audio or artwork path is not a local media path, or a title or artist is over 120 characters | Check the track's audio and artwork fields | Pick files from the media library rather than pasting a web address, and shorten long titles |
 
 ## Quick Start
 
 1. Install the package: `composer require capell-app/widget-audio-playlist`.
-2. Open a host admin workflow that uses the package extension and verify Audio Playlist Widget is available.
+2. Open a page, click **Layout builder**, **Add widgets**, then choose **Audio Playlist**.
+
+## Upgrading
+
+No manual steps between minor versions.
 
 ## Next Steps
 

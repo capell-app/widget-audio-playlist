@@ -36,7 +36,7 @@
             "notes": "Capture the real page editor for the dedicated seeded widget page. Open its content builder and expand the configured widget fields; a generic page form is not acceptance. The sidebar variant must also show the open admin sidebar.",
             "useCase": "An editor can see the fields used to configure the Audio Playlist widget.",
             "url": "/screenshot-fixtures/widgets/audio-playlist/editor",
-            "waitFor": ".fi-fo-builder-item:not(.fi-collapsed) .fi-fo-builder-item-content",
+            "waitFor": ":nth-match(.fi-fo-builder-item:not(.fi-collapsed) .fi-fo-builder-item-content .filepond--root:has(.filepond--file-info-main):not(:has(.filepond--item:not([data-filepond-item-state=\"idle\"]))), 2)",
             "beforeWait": [
                 {
                     "type": "click",
@@ -100,7 +100,7 @@
             "notes": "Capture the real page editor for the dedicated seeded widget page. Open its content builder and expand the configured widget fields; a generic page form is not acceptance. The sidebar variant must also show the open admin sidebar.",
             "useCase": "An editor can see the fields used to configure the Audio Playlist widget.",
             "url": "/screenshot-fixtures/widgets/audio-playlist/editor",
-            "waitFor": ".fi-fo-builder-item:not(.fi-collapsed) .fi-fo-builder-item-content",
+            "waitFor": ":nth-match(.fi-fo-builder-item:not(.fi-collapsed) .fi-fo-builder-item-content .filepond--root:has(.filepond--file-info-main):not(:has(.filepond--item:not([data-filepond-item-state=\"idle\"]))), 2)",
             "colorSchemes": ["light"],
             "screenshotPath": "packages/widget-audio-playlist/docs/screenshots/widget-audio-playlist-admin-sidebar-menu-open.png",
             "beforeWait": [
