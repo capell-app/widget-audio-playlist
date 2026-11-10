@@ -8,7 +8,7 @@
     "version": "1.0.0",
     "description": "Up to 20 uploaded tracks with native controls, artwork, transcripts, and chapters.",
     "product": {
-        "group": "Capell Foundation",
+        "group": "Capell Essentials",
         "tier": "free",
         "bundle": "foundation"
     },
@@ -143,7 +143,34 @@
     },
     "marketplace": {
         "summary": "Accessible native audio playlists with transcripts and chapters.",
+        "description": "Add podcasts, briefings and guided audio to a page as an ordered playlist with native browser controls, optional artwork, transcripts and up to fifty chapters per track. Requires Layout Builder. Limits: one to twenty tracks per playlist, and every track must use an audio file uploaded to the Capell media library (no streaming or third-party URLs).",
+        "problem": "Editors sharing audio need a way to give listeners context alongside the tracks.",
+        "outcome": "A page has a local audio playlist with optional supporting transcript and chapter content.",
+        "faq": [
+            {
+                "question": "Can playlists use remote audio?",
+                "answer": "No. Audio and artwork must use local media paths."
+            },
+            {
+                "question": "How many tracks fit in a playlist?",
+                "answer": "A playlist must contain between 1 and 20 tracks."
+            },
+            {
+                "question": "What supporting material can visitors access?",
+                "answer": "The player can show transcripts and chapter markers when supplied."
+            }
+        ],
         "screenshots": [
+            {
+                "path": "docs/assets/marketplace/listing-audio-playlist-public-output.png",
+                "alt": "Audio Playlist public output",
+                "caption": "Audio Playlist public output"
+            },
+            {
+                "path": "docs/assets/marketplace/listing-audio-playlist-layout-builder-editor.png",
+                "alt": "Audio Playlist fields in Layout Builder",
+                "caption": "Audio Playlist fields in Layout Builder"
+            },
             {
                 "path": "docs/assets/marketplace/extension-card.jpg",
                 "alt": "Audio Playlist widget preview",

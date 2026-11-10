@@ -16,7 +16,7 @@ In Layout Builder, as an Audio Playlist widget with fields for up to 20 ordered 
 
 ## Good to know
 
-- This free beta extension belongs to Capell Foundation and requires Layout Builder.
+- This free beta extension belongs to Capell Essentials and requires Layout Builder.
 - Tracks and artwork must use local media; remote audio URLs are rejected.
 - Playback never autostarts, and each audio element uses `preload="none"`.
 - Transcripts and chapters are rendered as expandable disclosures under their track. Chapter controls seek within the native audio player.
