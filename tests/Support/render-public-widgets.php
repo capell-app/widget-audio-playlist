@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 use Capell\WidgetAudioPlaylist\Data\AudioChapterData;
 use Capell\WidgetAudioPlaylist\Data\AudioPlaylistRenderData;
-use Capell\WidgetAudioPlaylist\Data\AudioTrackData;
+use Capell\WidgetAudioPlaylist\Data\AudioTrackRenderData;
 use Capell\WidgetCountdown\Data\CountdownRenderData;
 use Capell\WidgetLocationMap\Data\LocationMapRenderData;
 use Capell\WidgetLocationMap\Data\LocationMarkerData;
 use Capell\WidgetSlideshow\Data\SlideshowRenderData;
-use Capell\WidgetSlideshow\Data\SlideshowSlideData;
+use Capell\WidgetSlideshow\Data\SlideshowRenderSlideData;
 use Dom\Element;
 use Dom\HTMLDocument;
 use Dom\Node;
@@ -35,7 +35,9 @@ use Spatie\LaravelData\DataCollection;
 require dirname(__DIR__, 4) . '/vendor/autoload.php';
 
 // Render the shipped Blade without a database or a shared Testbench cache.
-$slug = $argv[1];
+$arguments = array_values((array) ($_SERVER['argv'] ?? []));
+$slug = $arguments[1] ?? null;
+throw_unless(is_string($slug) && $slug !== '', InvalidArgumentException::class, 'Usage: render-public-widgets.php <package-slug>');
 $root = dirname(__DIR__, 4) . '/packages/' . $slug . '/resources';
 $cache = sys_get_temp_dir() . '/widget-blade-' . bin2hex(random_bytes(8));
 mkdir($cache);
@@ -67,9 +69,8 @@ try {
         throw new InvalidArgumentException('Fixture options must be an object.');
     }
 
-    $controls = $options['controls'] ?? true;
     $auto = $options['auto'] ?? false;
-    if (! is_bool($controls) || ! is_bool($auto)) {
+    if (! is_bool($auto)) {
         throw new InvalidArgumentException('Playback options must be boolean.');
     }
 
@@ -81,8 +82,8 @@ try {
         default => throw new InvalidArgumentException('Unknown widget fixture.'),
     };
     $data = match ($slug) {
-        'widget-audio-playlist' => new AudioPlaylistRenderData('Listen', new DataCollection(AudioTrackData::class, array_map(static fn (int $number): AudioTrackData => new AudioTrackData('Track ' . $number, 'Artist', 'audio/local.mp3', chapters: new DataCollection(AudioChapterData::class, [new AudioChapterData('Opening', 12), new AudioChapterData('Next', 35)])), [1, 2]))),
-        'widget-slideshow' => new SlideshowRenderData('Slides', new DataCollection(SlideshowSlideData::class, [new SlideshowSlideData('one.jpg', 'One'), new SlideshowSlideData('two.jpg', 'Two', ctaLabel: 'Visit', ctaUrl: '/visit')]), $controls, $auto),
+        'widget-audio-playlist' => new AudioPlaylistRenderData('Listen', new DataCollection(AudioTrackRenderData::class, array_map(static fn (int $number): AudioTrackRenderData => new AudioTrackRenderData('Track ' . $number, 'Artist', 'audio/local.mp3', chapters: new DataCollection(AudioChapterData::class, [new AudioChapterData('Opening', 12), new AudioChapterData('Next', 35)])), [1, 2]))),
+        'widget-slideshow' => new SlideshowRenderData('Slides', new DataCollection(SlideshowRenderSlideData::class, [new SlideshowRenderSlideData('one.jpg', 'One'), new SlideshowRenderSlideData('two.jpg', 'Two', ctaLabel: 'Visit', ctaUrl: '/visit')]), $auto),
         'widget-countdown' => new CountdownRenderData('Countdown', 'UTC', '2030-01-01T00:01:00+00:00', 'Finished'),
         'widget-location-map' => new LocationMapRenderData('Map', new DataCollection(LocationMarkerData::class, [new LocationMarkerData('Studio', 51.5, -0.1)])),
     };

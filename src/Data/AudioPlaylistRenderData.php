@@ -10,6 +10,6 @@ use Spatie\LaravelData\DataCollection;
 
 final class AudioPlaylistRenderData extends Data
 {
-    /** @param DataCollection<int, AudioTrackData> $tracks */
-    public function __construct(public string $title, #[DataCollectionOf(AudioTrackData::class)] public DataCollection $tracks) {}
+    /** @param DataCollection<int, AudioTrackRenderData> $tracks */
+    public function __construct(public string $title, #[DataCollectionOf(AudioTrackRenderData::class)] public DataCollection $tracks) {}
 }

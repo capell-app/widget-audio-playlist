@@ -23,7 +23,7 @@
             "path": "docs/assets/marketplace/extension-card.svg",
             "fixtureKind": "illustrative-catalogue",
             "notes": "Committed Beta Marketplace card artwork for Audio Playlist Widget.",
-            "useCase": "A buyer reviews the Beta extension card before enabling Audio Playlist Widget."
+            "useCase": "The Audio Playlist Widget extension card, marked Beta."
         },
         {
             "id": "audio-playlist-layout-builder-editor",

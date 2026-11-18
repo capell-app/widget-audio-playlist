@@ -6,7 +6,7 @@ Developer reference for `capell-app/widget-audio-playlist`. Start with the [READ
 
 ## Package Details
 
-Audio Playlist Widget is an **Available**, **No schema impact** Capell package in the **Capell Essentials** product group. It ships as `capell-app/widget-audio-playlist` and extends these surfaces: admin, frontend.
+Audio Playlist Widget is an **Available** Capell package in the **Capell Essentials** product group. It ships as `capell-app/widget-audio-playlist` and extends these surfaces: admin, frontend.
 
 - Status: Available
 - Tier: free
@@ -25,12 +25,17 @@ Audio Playlist Widget is an **Available**, **No schema impact** Capell package i
 
 - `AudioPlaylistWidget`
 
+### Actions
+
+- `ResolveAudioPlaylistPayloadsAction`
+
 ### Data objects
 
 - `AudioChapterData`
 - `AudioPlaylistInputData`
 - `AudioPlaylistRenderData`
 - `AudioTrackData`
+- `AudioTrackRenderData`
 
 ### Manifest contributions
 

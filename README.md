@@ -2,27 +2,27 @@
 
 <!-- prettier-ignore-start -->
 
-## What It Does
+Recordings of your talks, sermons or podcast episodes go on your own page as an audio playlist. Listeners see them listed in the order you choose and play each one right there in the browser.
 
-Audio Playlist adds a Layout Builder widget for local audio tracks with artwork, native controls, transcripts, and chapter markers. Its configuration accepts a bounded playlist and rejects remote audio sources.
+The files have to be ones you upload, which means a Spotify or SoundCloud link won't work here. Each track gets a title and an artist, plus a picture if you want one. Paste in a written version of a talk and listeners can open it under a Transcript heading.
+
+Chapters let people skip to the part they came for. Give each part of a recording a name and the time it starts, and it shows as a button such as "Sermon (08:40)". Tapping it jumps the track to that point and plays from there.
+
+No audio downloads until someone presses play, which keeps the page quick to open. Tracks don't run on from one to the next, and starting a second track pauses the first.
 
 - **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/extensions/widget-audio-playlist).
 - **Licence:** Check the licence terms on the [Capell Marketplace listing](https://capell.app/extensions/widget-audio-playlist).
 - **Requires:** `PHP ^8.4`, `capell-app/admin ^1.0`, `capell-app/core ^1.0.66`, `capell-app/frontend ^1.0`, `capell-app/layout-builder ^1.0.44`, `spatie/laravel-package-tools ^1.0`.
 - **Install:** `composer require capell-app/widget-audio-playlist`.
 
-Editors configure the playlist in Layout Builder, and visitors receive a public player with track context and supporting transcript or chapter content when supplied.
-
-## Who It Is For
-
-**For developers:** The package registers a typed widget extension and validates media and nested track data before the public Blade render.
-
-**For teams:** Teams can publish a structured listening experience with useful context instead of assembling separate players and transcript blocks.
-
 ## Quick Start
 
 1. Install the package: `composer require capell-app/widget-audio-playlist`.
 2. Open a page, click **Layout builder**, **Add widgets**, then choose **Audio Playlist**.
+
+## For Developers
+
+The package registers a typed widget extension and validates media and nested track data before the public Blade render.
 
 ## Configure
 
@@ -65,8 +65,6 @@ This extension works without configuration. There is nothing to set after instal
 | --- | --- | --- | --- |
 | Package surface is missing after install | Provider or manifest is not loaded | Confirm `capell.json`, package `composer.json`, and provider registration | Reinstall the package, refresh Composer autoload, and clear host caches |
 | Public output leaks unexpected state | Render data, cache variation, or authoring boundary has regressed | Check public Blade, cache tags, and public-output safety tests | Move data loading out of Blade and rerun the package public-output tests |
-| The playlist is refused | It has no tracks or more than 20 | Count the tracks in the widget | Keep between 1 and 20 tracks |
-| A track is refused | The audio or artwork path is not a local media path, or a title or artist is over 120 characters | Check the track's audio and artwork fields | Pick files from the media library rather than pasting a web address, and shorten long titles |
 
 ## Upgrading
 

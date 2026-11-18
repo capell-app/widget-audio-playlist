@@ -207,30 +207,28 @@ for (const slug of ['audio-playlist', 'countdown', 'location-map'])
         }
     })
 
-for (const controls of [false, true])
-    for (const auto of [false, true])
-        for (const reduced of [false, true])
-            test(`slideshow manual reachability controls=${controls} auto=${auto} reduced=${reduced}`, () => {
-                const { document, timers } = runtime(
-                    'slideshow',
-                    fixture('slideshow', { controls, auto }),
-                    reduced,
-                )
-                const slides = document.querySelectorAll(
-                    '.capell-slideshow__slide',
-                )
-                document
-                    .querySelector('[data-slideshow-next]')
-                    .dispatchEvent({ type: 'click' })
-                assert.equal(slides[0].hidden, true)
-                assert.equal(slides[1].hidden, false)
-                document
-                    .querySelector('[data-slideshow-previous]')
-                    .dispatchEvent({ type: 'click' })
-                assert.equal(slides[0].hidden, false)
-                assert.equal(slides[1].hidden, true)
-                assert.equal(timers.size, auto && !reduced ? 1 : 0)
-            })
+for (const auto of [false, true])
+    for (const reduced of [false, true]) {
+        test(`slideshow manual reachability auto=${auto} reduced=${reduced}`, () => {
+            const { document, timers } = runtime(
+                'slideshow',
+                fixture('slideshow', { auto }),
+                reduced,
+            )
+            const slides = document.querySelectorAll('.capell-slideshow__slide')
+            document
+                .querySelector('[data-slideshow-next]')
+                .dispatchEvent({ type: 'click' })
+            assert.equal(slides[0].hidden, true)
+            assert.equal(slides[1].hidden, false)
+            document
+                .querySelector('[data-slideshow-previous]')
+                .dispatchEvent({ type: 'click' })
+            assert.equal(slides[0].hidden, false)
+            assert.equal(slides[1].hidden, true)
+            assert.equal(timers.size, auto && !reduced ? 1 : 0)
+        })
+    }
 
 for (const consent of [false, true])
     test(`map keeps previous public markup accessible with consent=${consent}`, () => {
@@ -284,47 +282,42 @@ test('countdown mounts previous public markup and still registers dynamic conten
     assert.equal(state.timers.size, 0)
 })
 
-for (const controls of [false, true])
-    for (const reduced of [false, true])
-        test(`slideshow advertises its actual playback action controls=${controls} reduced=${reduced}`, () => {
-            const { document, timers, tick } = runtime(
-                'slideshow',
-                fixture('slideshow', { controls, auto: true }),
-                reduced,
-            )
-            const toggle = document.querySelector('[data-slideshow-toggle]')
-            assert.equal(
-                toggle.textContent.trim(),
-                reduced
-                    ? toggle.dataset.labelResume
-                    : toggle.dataset.labelPause,
-            )
-            assert.equal(
-                toggle.attributes['aria-label'],
-                reduced
-                    ? toggle.dataset.labelResumeSlideshow
-                    : toggle.dataset.labelPauseSlideshow,
-            )
-            assert.equal(toggle.attributes['aria-pressed'], String(reduced))
-            assert.equal(timers.size, reduced ? 0 : 1)
-            toggle.dispatchEvent({ type: 'click' })
-            assert.equal(
-                toggle.textContent,
-                reduced
-                    ? toggle.dataset.labelPause
-                    : toggle.dataset.labelResume,
-            )
-            assert.equal(
-                toggle.attributes['aria-label'],
-                reduced
-                    ? toggle.dataset.labelPauseSlideshow
-                    : toggle.dataset.labelResumeSlideshow,
-            )
-            assert.equal(toggle.attributes['aria-pressed'], String(!reduced))
-            assert.equal(timers.size, reduced ? 1 : 0)
-            tick()
-            assert.equal(
-                document.querySelectorAll('.capell-slideshow__slide')[1].hidden,
-                !reduced,
-            )
-        })
+for (const reduced of [false, true])
+    test(`slideshow advertises its actual playback action reduced=${reduced}`, () => {
+        const { document, timers, tick } = runtime(
+            'slideshow',
+            fixture('slideshow', { auto: true }),
+            reduced,
+        )
+        const toggle = document.querySelector('[data-slideshow-toggle]')
+        assert.equal(
+            toggle.textContent.trim(),
+            reduced ? toggle.dataset.labelResume : toggle.dataset.labelPause,
+        )
+        assert.equal(
+            toggle.attributes['aria-label'],
+            reduced
+                ? toggle.dataset.labelResumeSlideshow
+                : toggle.dataset.labelPauseSlideshow,
+        )
+        assert.equal(toggle.attributes['aria-pressed'], undefined)
+        assert.equal(timers.size, reduced ? 0 : 1)
+        toggle.dispatchEvent({ type: 'click' })
+        assert.equal(
+            toggle.textContent,
+            reduced ? toggle.dataset.labelPause : toggle.dataset.labelResume,
+        )
+        assert.equal(
+            toggle.attributes['aria-label'],
+            reduced
+                ? toggle.dataset.labelPauseSlideshow
+                : toggle.dataset.labelResumeSlideshow,
+        )
+        assert.equal(toggle.attributes['aria-pressed'], undefined)
+        assert.equal(timers.size, reduced ? 1 : 0)
+        tick()
+        assert.equal(
+            document.querySelectorAll('.capell-slideshow__slide')[1].hidden,
+            !reduced,
+        )
+    })

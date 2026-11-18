@@ -6,7 +6,7 @@
     "kind": "package",
     "capellApiVersion": "^1.0",
     "version": "1.0.0",
-    "description": "Up to 20 uploaded tracks with native controls, artwork, transcripts, and chapters.",
+    "description": "Your recorded talks, sermons or episodes on a page as a playlist, with transcripts and chapters listeners can jump to.",
     "product": {
         "group": "Capell Essentials",
         "tier": "free",
@@ -59,7 +59,7 @@
     },
     "settings": [],
     "permissions": [],
-    "capabilities": ["frontend.public-static"],
+    "capabilities": ["frontend-surface"],
     "security": {
         "riskTier": "low",
         "publicSurface": {
@@ -142,41 +142,59 @@
         "privateDocsRequested": false
     },
     "marketplace": {
-        "summary": "Accessible native audio playlists with transcripts and chapters.",
-        "description": "Add podcasts, briefings and guided audio to a page as an ordered playlist with native browser controls, optional artwork, transcripts and up to fifty chapters per track. Requires Layout Builder. Limits: one to twenty tracks per playlist, and every track must use an audio file uploaded to the Capell media library (no streaming or third-party URLs).",
-        "problem": "Editors sharing audio need a way to give listeners context alongside the tracks.",
-        "outcome": "A page has a local audio playlist with optional supporting transcript and chapter content.",
+        "summary": "An audio playlist of your uploaded files, with optional artwork, transcripts and chapter buttons that skip to the right moment.",
+        "description": "Put up to twenty uploaded recordings on a page as a playlist, in the order you set. Each track has a title and an artist, with artwork if you add it. Add a transcript and listeners can open it beneath the track. Name the parts of a recording with their start times and they appear as chapter buttons. Audio loads only once someone presses play. Tracks must be audio files uploaded to the Capell media library, so web links to outside players aren't accepted. It needs Layout Builder to place it on a page.",
+        "problem": "Recordings sit unheard, or live in someone else's player, with no written version and no way to skip ahead.",
+        "outcome": "Listeners pick a track from your list on your page, read the transcript and jump straight to the chapter they want.",
         "faq": [
             {
-                "question": "Can playlists use remote audio?",
-                "answer": "No. Audio and artwork must use local media paths."
+                "question": "Can I use a Spotify or SoundCloud link?",
+                "answer": "No. The audio has to be files you upload to your own site, and any artwork has to be uploaded too."
             },
             {
-                "question": "How many tracks fit in a playlist?",
-                "answer": "A playlist must contain between 1 and 20 tracks."
+                "question": "How many tracks can one playlist hold?",
+                "answer": "Between one and twenty. Listeners see them in the order you choose and play each one on the page."
             },
             {
-                "question": "What supporting material can visitors access?",
-                "answer": "The player can show transcripts and chapter markers when supplied."
+                "question": "Can listeners read a transcript or jump to a chapter?",
+                "answer": "Yes, when you supply them. A written version opens under a Transcript heading, and each chapter becomes a button that jumps the track to its start time."
+            },
+            {
+                "question": "Does the next track start by itself?",
+                "answer": "No. Each track plays when someone presses play, and starting another one pauses the first."
             }
         ],
         "screenshots": [
             {
                 "path": "docs/assets/marketplace/listing-audio-playlist-public-output.png",
-                "alt": "Audio Playlist public output",
-                "caption": "Audio Playlist public output"
+                "alt": "Playlist called Studio listening room with one track, its artwork, an audio player and Transcript and Chapters toggles",
+                "caption": "Visitors play a track in the browser and can open its transcript and chapters."
             },
             {
                 "path": "docs/assets/marketplace/listing-audio-playlist-layout-builder-editor.png",
-                "alt": "Audio Playlist fields in Layout Builder",
-                "caption": "Audio Playlist fields in Layout Builder"
+                "alt": "Page editor with an Audio Playlist block open, showing a title, track title, artist, an uploaded audio file and artwork",
+                "caption": "Each track takes a title, an artist, an audio file and optional artwork."
             },
             {
                 "path": "docs/assets/marketplace/extension-card.jpg",
-                "alt": "Audio Playlist widget preview",
-                "caption": "Audio Playlist widget"
+                "alt": "Marketplace card for the Audio Playlist widget with two screens and the steps Install, Use and Evolve",
+                "caption": "Card used for the widget's Marketplace listing."
             }
         ],
         "categories": ["foundation", "frontend", "media"]
+    },
+    "contributionTraceability": {
+        "contributions": [
+            {
+                "type": "asset",
+                "key": "resource-group:capell-app.widget-audio-playlist",
+                "providerBucket": "runtime"
+            },
+            {
+                "type": "content-widget",
+                "key": "capell-app.audio-playlist",
+                "providerBucket": "runtime"
+            }
+        ]
     }
 }

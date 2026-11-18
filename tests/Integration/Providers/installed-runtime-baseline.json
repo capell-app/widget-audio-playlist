@@ -4,10 +4,10 @@
     "scenarios": {
         "default": {
             "source": {
-                "ref": "HEAD",
-                "commit": "adac26b4ce1e9e1de545f68a1ff272ff73111696",
+                "ref": "92da4146f6",
+                "commit": "92da4146f6865853f68459b45621ebc812302b34",
                 "providers": {
-                    "Providers/WidgetAudioPlaylistServiceProvider.php": "3c05158698da750476cdf7b4d27c26c9e61102b1c57f2ccbf530561c7d4345f0"
+                    "Providers/WidgetAudioPlaylistServiceProvider.php": "2861179ccca557ac77bab573a4ba5505b2650a044c639476657b78734ac4c7d6"
                 },
                 "configure": null
             },
@@ -199,7 +199,7 @@
                             "capell-app.audio-playlist": [
                                 "Capell\\LayoutBuilder\\Data\\WidgetExtensions\\WidgetExtensionDefinitionData",
                                 {
-                                    "batchPayloadResolver": null,
+                                    "batchPayloadResolver": "Capell\\WidgetAudioPlaylist\\Actions\\ResolveAudioPlaylistPayloadsAction",
                                     "capabilities": [
                                         "Capell\\LayoutBuilder\\Data\\WidgetExtensions\\WidgetExtensionCapabilitiesData",
                                         {

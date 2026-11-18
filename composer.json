@@ -1,6 +1,6 @@
 {
     "name": "capell-app/widget-audio-playlist",
-    "description": "Accessible uploaded audio playlist widget for Capell.",
+    "description": "Audio playlist widget for Capell pages with uploaded tracks, transcripts and chapter buttons that jump to the right moment. Needs Layout Builder.",
     "type": "library",
     "license": "proprietary",
     "require": {

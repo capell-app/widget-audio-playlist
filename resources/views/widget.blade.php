@@ -12,6 +12,9 @@
                     <img
                         src="{{ asset('storage/'.ltrim($track->artwork,'/')) }}"
                         alt=""
+                        @if ($track->artworkSrcset) srcset="{{ $track->artworkSrcset }}" sizes="8rem" @endif
+                        @if ($track->artworkWidth && $track->artworkHeight) width="{{ $track->artworkWidth }}" height="{{ $track->artworkHeight }}" @endif
+                        decoding="async"
                         loading="lazy"
                     />
                 @endif
@@ -29,7 +32,9 @@
                             <summary>
                                 {{ __('capell-widget-audio-playlist::widget.transcript') }}
                             </summary>
-                            <p>{{ $track->transcript }}</p>
+                            @foreach ($track->transcriptParagraphs() as $paragraph)
+                                <p>{{ $paragraph }}</p>
+                            @endforeach
                         </details>
                     @endif
                     @if ($track->chapters->count())
@@ -44,7 +49,7 @@
                                             type="button"
                                             data-audio-seek="{{ $chapter->startSeconds }}"
                                         >
-                                            {{ $chapter->label }} ({{ gmdate('i:s',$chapter->startSeconds) }})
+                                            {{ $chapter->label }} ({{ $chapter->timestamp() }})
                                         </button>
                                     </li>
                                 @endforeach

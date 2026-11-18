@@ -1,0 +1,50 @@
+[
+    {
+        "claim": "A playlist holds 1 to 20 tracks the editor can reorder",
+        "evidence": [
+            "src/Filament/AudioPlaylistWidget.php",
+            "src/Data/AudioPlaylistInputData.php"
+        ]
+    },
+    {
+        "claim": "Each track has a title, an artist, an uploaded audio file and optional artwork",
+        "evidence": [
+            "src/Filament/AudioPlaylistWidget.php",
+            "src/Data/AudioTrackData.php"
+        ]
+    },
+    {
+        "claim": "Only uploaded files are accepted, not web addresses",
+        "evidence": ["src/Data/AudioTrackData.php"]
+    },
+    {
+        "claim": "An optional transcript opens under a Transcript heading",
+        "evidence": [
+            "resources/views/widget.blade.php",
+            "src/Data/AudioTrackData.php"
+        ]
+    },
+    {
+        "claim": "Chapters have a label and start time and show as buttons such as Sermon (08:40)",
+        "evidence": [
+            "src/Data/AudioChapterData.php",
+            "resources/views/widget.blade.php"
+        ]
+    },
+    {
+        "claim": "Audio does not load until the visitor presses play",
+        "evidence": ["resources/views/widget.blade.php"]
+    },
+    {
+        "claim": "Tracks do not play on from one to the next",
+        "evidence": ["resources/dist/widget.js"]
+    },
+    {
+        "claim": "Starting one track pauses the other",
+        "evidence": ["resources/dist/widget.js"]
+    },
+    {
+        "claim": "Tapping a chapter jumps the track there and plays it",
+        "evidence": ["resources/dist/widget.js"]
+    }
+]

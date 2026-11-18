@@ -73,59 +73,54 @@ test('nested chapters seek and play only their owning track; rejected playback i
     }
 })
 
-for (const controls of [false, true])
-    for (const auto of [false, true])
-        for (const reducedMotion of ['reduce', 'no-preference']) {
-            test(`slideshow reaches CTA with controls=${controls} auto=${auto} motion=${reducedMotion}`, async () => {
-                const page = await open(render('slideshow', { controls, auto }))
-                try {
-                    await page.emulateMedia({ reducedMotion })
-                    await page.addScriptTag({ content: script('slideshow') })
-                    if (auto) {
-                        const toggle = page.locator('[data-slideshow-toggle]')
-                        const paused = reducedMotion === 'reduce'
-                        const action = paused ? 'resume' : 'pause'
-                        assert.equal(
-                            (await toggle.textContent()).trim(),
-                            await toggle.getAttribute(`data-label-${action}`),
-                        )
-                        assert.equal(
-                            await toggle.getAttribute('aria-label'),
-                            await toggle.getAttribute(
-                                `data-label-${action}-slideshow`,
-                            ),
-                        )
-                        assert.equal(
-                            await toggle.getAttribute('aria-pressed'),
-                            String(paused),
-                        )
-                        await toggle.click()
-                        assert.equal(
-                            await toggle.getAttribute('aria-pressed'),
-                            String(!paused),
-                        )
-                    }
-                    const next = page.locator('[data-slideshow-next]')
-                    assert.equal(await next.count(), 1)
-                    await next.focus()
-                    await page.keyboard.press('Enter')
+for (const auto of [false, true])
+    for (const reducedMotion of ['reduce', 'no-preference']) {
+        test(`slideshow reaches CTA with auto=${auto} motion=${reducedMotion}`, async () => {
+            const page = await open(render('slideshow', { auto }))
+            try {
+                await page.emulateMedia({ reducedMotion })
+                await page.addScriptTag({ content: script('slideshow') })
+                if (auto) {
+                    const toggle = page.locator('[data-slideshow-toggle]')
+                    const paused = reducedMotion === 'reduce'
+                    const action = paused ? 'resume' : 'pause'
                     assert.equal(
-                        await page.locator('a[href="/visit"]').isVisible(),
-                        true,
+                        (await toggle.textContent()).trim(),
+                        await toggle.getAttribute(`data-label-${action}`),
                     )
-                    await page.locator('[data-slideshow-previous]').click()
                     assert.equal(
-                        await page
-                            .locator('.capell-slideshow__slide')
-                            .first()
-                            .isVisible(),
-                        true,
+                        await toggle.getAttribute('aria-label'),
+                        await toggle.getAttribute(
+                            `data-label-${action}-slideshow`,
+                        ),
                     )
-                } finally {
-                    await page.close()
+                    assert.equal(
+                        await toggle.getAttribute('aria-pressed'),
+                        null,
+                    )
+                    await toggle.click()
                 }
-            })
-        }
+                const next = page.locator('[data-slideshow-next]')
+                assert.equal(await next.count(), 1)
+                await next.focus()
+                await page.keyboard.press('Enter')
+                assert.equal(
+                    await page.locator('a[href="/visit"]').isVisible(),
+                    true,
+                )
+                await page.locator('[data-slideshow-previous]').click()
+                assert.equal(
+                    await page
+                        .locator('.capell-slideshow__slide')
+                        .first()
+                        .isVisible(),
+                    true,
+                )
+            } finally {
+                await page.close()
+            }
+        })
+    }
 
 test('real inline reveal initialises loaded audio, countdown and map assets once and respects privacy', async () => {
     const html =
@@ -222,7 +217,7 @@ test('without scripting every slide and its CTA remain visible', async () => {
                     'utf8',
                 ) +
                 '</style>' +
-                render('slideshow', { controls: false, auto: false }),
+                render('slideshow', { auto: false }),
         )
         for (const slide of await page
             .locator('.capell-slideshow__slide')

@@ -9,6 +9,10 @@ use Capell\Core\Models\Site;
 use Capell\Core\Models\SiteDomain;
 use Capell\Frontend\Actions\AssertPublicHtmlContainsNoAuthoringSurfaceAction;
 use Capell\Frontend\Support\Security\PublicHtmlSafetyInspector;
+use Capell\LayoutBuilder\Data\WidgetExtensions\WidgetExtensionPayloadBatchData;
+use Capell\LayoutBuilder\Data\WidgetExtensions\WidgetExtensionPayloadInputData;
+use Capell\LayoutBuilder\Data\WidgetExtensions\WidgetExtensionRenderContextData;
+use Capell\WidgetAudioPlaylist\Actions\ResolveAudioPlaylistPayloadsAction;
 use Capell\WidgetAudioPlaylist\Data\AudioPlaylistInputData;
 use Capell\WidgetAudioPlaylist\Data\AudioPlaylistRenderData;
 use Capell\WidgetAudioPlaylist\Health\WidgetAudioPlaylistHealthCheck;
@@ -16,6 +20,7 @@ use Capell\WidgetAudioPlaylist\Providers\WidgetAudioPlaylistServiceProvider;
 use Dom\HTMLDocument;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -68,4 +73,58 @@ it('serves the complete public widget through a page without authoring data', fu
     expect($document->querySelectorAll('[data-audio-track] audio'))->toHaveCount(2)
         ->and($document->querySelectorAll('[data-audio-track] li button[data-audio-seek]'))->toHaveCount(2);
     AssertPublicHtmlContainsNoAuthoringSurfaceAction::run($response);
+});
+
+it('shows long chapter times with hours, splits the transcript into paragraphs and sizes artwork', function (): void {
+    $renderData = AudioPlaylistRenderData::from(['title' => 'Listen', 'tracks' => [[
+        'title' => 'Long', 'artist' => 'Artist', 'audio' => 'audio/long.mp3', 'artwork' => 'art/cover.png',
+        'artworkWidth' => 600, 'artworkHeight' => 600,
+        'transcript' => "Welcome <b>everyone</b>\n\nSecond paragraph",
+        'chapters' => [['label' => 'Intro', 'startSeconds' => 65], ['label' => 'Finale', 'startSeconds' => 3725]],
+    ]]]);
+    $html = view('capell-widget-audio-playlist::widget', ['renderData' => $renderData])->render();
+
+    expect($html)->toContain('Intro (01:05)')
+        ->toContain('Finale (1:02:05)')
+        ->toContain('<p>Welcome &lt;b&gt;everyone&lt;/b&gt;</p>')
+        ->toContain('<p>Second paragraph</p>')
+        ->toContain('width="600"')
+        ->toContain('height="600"');
+});
+
+it('resolves the artwork size into render data and ignores tracks without artwork or with traversing paths', function (): void {
+    Storage::fake('public');
+    ob_start();
+    imagepng(imagecreatetruecolor(300, 200));
+    Storage::disk('public')->put('art/cover.png', (string) ob_get_clean());
+    $input = AudioPlaylistInputData::validateAndCreate(['title' => 'Listen', 'tracks' => [
+        ['title' => 'A', 'artist' => 'X', 'audio' => 'audio/a.mp3', 'artwork' => 'art/cover.png'],
+        ['title' => 'B', 'artist' => 'X', 'audio' => 'audio/b.mp3'],
+        ['title' => 'C', 'artist' => 'X', 'audio' => 'audio/c.mp3', 'artwork' => '../cover.png'],
+    ]]);
+    $payload = resolve(ResolveAudioPlaylistPayloadsAction::class)->resolve(new WidgetExtensionPayloadBatchData([new WidgetExtensionPayloadInputData('instance', $input)], new WidgetExtensionRenderContextData(null)))['instance'];
+
+    expect($payload->tracks[0]->artworkWidth)->toBe(300)
+        ->and($payload->tracks[0]->artworkHeight)->toBe(200)
+        ->and($payload->tracks[1]->artworkWidth)->toBeNull()
+        ->and($payload->tracks[2]->artworkWidth)->toBeNull();
+});
+
+it('serves a srcset for wide artwork and keeps missing artwork plain, with no authoring state', function (): void {
+    Storage::fake('public');
+    ob_start();
+    imagejpeg(imagecreatetruecolor(1600, 1600));
+    Storage::disk('public')->put('art/wide.jpg', (string) ob_get_clean());
+    $input = AudioPlaylistInputData::validateAndCreate(['title' => 'Listen', 'tracks' => [
+        ['title' => 'A', 'artist' => 'X', 'audio' => 'audio/a.mp3', 'artwork' => 'art/wide.jpg'],
+        ['title' => 'B', 'artist' => 'X', 'audio' => 'audio/b.mp3', 'artwork' => 'art/missing.jpg'],
+    ]]);
+    $payload = resolve(ResolveAudioPlaylistPayloadsAction::class)->resolve(new WidgetExtensionPayloadBatchData([new WidgetExtensionPayloadInputData('instance', $input)], new WidgetExtensionRenderContextData(null)))['instance'];
+    $html = view('capell-widget-audio-playlist::widget', ['renderData' => $payload])->render();
+    $images = HTMLDocument::createFromString($html, LIBXML_NOERROR)->querySelectorAll('img');
+
+    expect($images[0]->getAttribute('srcset'))->toContain(' 480w')->toContain('art/wide.jpg 1600w')
+        ->and($images[0]->getAttribute('sizes'))->toBe('8rem')
+        ->and($images[1]->hasAttribute('srcset'))->toBeFalse()
+        ->and($html)->not->toContain('instance')->not->toContain(Storage::disk('public')->path(''));
 });

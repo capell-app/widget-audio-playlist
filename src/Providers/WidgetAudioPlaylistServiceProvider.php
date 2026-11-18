@@ -9,6 +9,7 @@ use Capell\LayoutBuilder\Data\WidgetExtensions\WidgetExtensionCapabilitiesData;
 use Capell\LayoutBuilder\Data\WidgetExtensions\WidgetExtensionDefinitionData;
 use Capell\LayoutBuilder\Enums\WidgetPresentationCapability;
 use Capell\LayoutBuilder\Providers\AbstractFoundationWidgetServiceProvider;
+use Capell\WidgetAudioPlaylist\Actions\ResolveAudioPlaylistPayloadsAction;
 use Capell\WidgetAudioPlaylist\Data\AudioPlaylistInputData;
 use Capell\WidgetAudioPlaylist\Data\AudioPlaylistRenderData;
 use Capell\WidgetAudioPlaylist\Filament\AudioPlaylistWidget;
@@ -38,6 +39,6 @@ final class WidgetAudioPlaylistServiceProvider extends AbstractFoundationWidgetS
     #[Override]
     protected function definition(): WidgetExtensionDefinitionData
     {
-        return new WidgetExtensionDefinitionData(key: 'capell-app.audio-playlist', packageName: self::$packageName, stateVersion: 1, filamentWidget: AudioPlaylistWidget::class, inputData: AudioPlaylistInputData::class, renderData: AudioPlaylistRenderData::class, fallbackView: 'capell-widget-audio-playlist::widget', components: ['blade' => 'capell::widgets.capell-app.audio-playlist'], resourceGroups: [self::resourceGroup()], defaultResourceLoadingStrategy: PresentationLoadingStrategy::Visible, capabilities: new WidgetExtensionCapabilitiesData(requiresInstanceIdentity: true, presentationCapabilities: [WidgetPresentationCapability::Width, WidgetPresentationCapability::Alignment, WidgetPresentationCapability::LoadingStrategy]));
+        return new WidgetExtensionDefinitionData(key: 'capell-app.audio-playlist', packageName: self::$packageName, stateVersion: 1, filamentWidget: AudioPlaylistWidget::class, inputData: AudioPlaylistInputData::class, renderData: AudioPlaylistRenderData::class, batchPayloadResolver: ResolveAudioPlaylistPayloadsAction::class, fallbackView: 'capell-widget-audio-playlist::widget', components: ['blade' => 'capell::widgets.capell-app.audio-playlist'], resourceGroups: [self::resourceGroup()], defaultResourceLoadingStrategy: PresentationLoadingStrategy::Visible, capabilities: new WidgetExtensionCapabilitiesData(requiresInstanceIdentity: true, presentationCapabilities: [WidgetPresentationCapability::Width, WidgetPresentationCapability::Alignment, WidgetPresentationCapability::LoadingStrategy]));
     }
 }
