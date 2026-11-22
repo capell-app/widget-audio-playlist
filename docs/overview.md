@@ -29,10 +29,6 @@ In Layout Builder, as an Audio Playlist widget with fields for up to 20 ordered 
 - Playback never autostarts, and each audio element uses `preload="none"`.
 - Transcripts and chapters are rendered as expandable disclosures under their track. Chapter controls seek within the native audio player.
 
-## Screenshot status
-
-Capture the configured Layout Builder fields and a public playlist with at least two tracks, artwork, and an expanded transcript disclosure.
-
 Widgets added through deferred content or inline reveal initialise when the content arrives. Repeated content-ready events do not duplicate listeners or countdown timers.
 
 ---

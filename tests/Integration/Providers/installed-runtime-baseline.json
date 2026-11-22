@@ -73,7 +73,7 @@
                                     "package": "capell-app/widget-audio-playlist",
                                     "resources": [
                                         [
-                                            "Capell\\Frontend\\Data\\Assets\\FrontendResourceData",
+                                            "Capell\\Core\\Data\\Rendering\\Assets\\FrontendResourceData",
                                             {
                                                 "async": false,
                                                 "criticalCssEligible": false,
@@ -94,7 +94,7 @@
                                             }
                                         ],
                                         [
-                                            "Capell\\Frontend\\Data\\Assets\\FrontendResourceData",
+                                            "Capell\\Core\\Data\\Rendering\\Assets\\FrontendResourceData",
                                             {
                                                 "async": false,
                                                 "criticalCssEligible": false,
@@ -120,7 +120,7 @@
                         },
                         "resources": {
                             "capell-app/widget-audio-playlist:widget-script": [
-                                "Capell\\Frontend\\Data\\Assets\\FrontendResourceData",
+                                "Capell\\Core\\Data\\Rendering\\Assets\\FrontendResourceData",
                                 {
                                     "async": false,
                                     "criticalCssEligible": false,
@@ -141,7 +141,7 @@
                                 }
                             ],
                             "capell-app/widget-audio-playlist:widget-style": [
-                                "Capell\\Frontend\\Data\\Assets\\FrontendResourceData",
+                                "Capell\\Core\\Data\\Rendering\\Assets\\FrontendResourceData",
                                 {
                                     "async": false,
                                     "criticalCssEligible": false,

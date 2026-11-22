@@ -10,14 +10,14 @@ Chapters let people skip to the part they came for. Give each part of a recordin
 
 No audio downloads until someone presses play, which keeps the page quick to open. Tracks don't run on from one to the next, and starting a second track pauses the first.
 
-- **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/extensions/widget-audio-playlist).
-- **Licence:** Check the licence terms on the [Capell Marketplace listing](https://capell.app/extensions/widget-audio-playlist).
-- **Requires:** `PHP ^8.4`, `capell-app/admin ^1.0`, `capell-app/core ^1.0.66`, `capell-app/frontend ^1.0`, `capell-app/layout-builder ^1.0.44`, `spatie/laravel-package-tools ^1.0`.
-- **Install:** `composer require capell-app/widget-audio-playlist`.
+- **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/marketplace/extensions/widget-audio-playlist).
+- **Licence:** Check the licence terms on the [Capell Marketplace listing](https://capell.app/marketplace/extensions/widget-audio-playlist).
+- **Requires:** `PHP ^8.4`, `capell-app/admin ^1.0`, `capell-app/core ^1.0.79`, `capell-app/frontend ^1.0.79`, `capell-app/layout-builder ^1.0.44`, `spatie/laravel-package-tools ^1.0`.
+- **Install:** `composer require capell-app/widget-audio-playlist:@beta`.
 
 ## Quick Start
 
-1. Install the package: `composer require capell-app/widget-audio-playlist`.
+1. Install the package: `composer require capell-app/widget-audio-playlist:@beta`.
 2. Open a page, click **Layout builder**, **Add widgets**, then choose **Audio Playlist**.
 
 ## For Developers
@@ -30,7 +30,7 @@ This extension works without configuration. There is nothing to set after instal
 
 ## Limits And Pitfalls
 
-- Install the required Capell packages at the versions in `composer.json`: `capell-app/admin ^1.0`, `capell-app/core ^1.0.66`, `capell-app/frontend ^1.0`, `capell-app/layout-builder ^1.0.44`.
+- Install the required Capell packages at the versions in `composer.json`: `capell-app/admin ^1.0`, `capell-app/core ^1.0.79`, `capell-app/frontend ^1.0.79`, `capell-app/layout-builder ^1.0.44`.
 - Keep public Blade and cached HTML free of authoring markers, model IDs, permissions, signed editor URLs, and lazy database queries.
 - Custom write integrations must preserve invalidation for `widget-audio-playlist` cache tags.
 
