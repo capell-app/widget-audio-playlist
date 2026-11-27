@@ -6,6 +6,7 @@
     "kind": "package",
     "capellApiVersion": "^1.0",
     "version": "1.0.0",
+    "launchStatus": "preview",
     "description": "Your recorded talks, sermons or episodes on a page as a playlist, with transcripts and chapters listeners can jump to.",
     "product": {
         "group": "Capell Essentials",
